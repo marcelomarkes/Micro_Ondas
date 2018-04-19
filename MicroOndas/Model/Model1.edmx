@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_microondasModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="potencia">
+          <Key>
+            <PropertyRef Name="idpotencia" />
+          </Key>
+          <Property Name="idpotencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao_potencia" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="valor_potencia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_alimentos">
+          <Key>
+            <PropertyRef Name="id_alimentos" />
+          </Key>
+          <Property Name="id_alimentos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao_alimento" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="tempo_alimento" Type="int" />
+          <Property Name="id_defdefault" Type="int" />
+          <Property Name="id_temp" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_defdefault">
+          <Key>
+            <PropertyRef Name="id_defdefault" />
+          </Key>
+          <Property Name="id_defdefault" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao_defdefault" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="tempo_defaut" Type="int" Nullable="false" />
+          <Property Name="idpotencia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_temp">
+          <Key>
+            <PropertyRef Name="id_temp" />
+          </Key>
+          <Property Name="id_temp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="temp" Type="int" Nullable="false" />
+          <Property Name="idpotencia" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_tb_alimentos_tb_defdefault">
+          <End Role="tb_defdefault" Type="Self.tb_defdefault" Multiplicity="0..1" />
+          <End Role="tb_alimentos" Type="Self.tb_alimentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_defdefault">
+              <PropertyRef Name="id_defdefault" />
+            </Principal>
+            <Dependent Role="tb_alimentos">
+              <PropertyRef Name="id_defdefault" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_alimentos_tb_temp1">
+          <End Role="tb_temp" Type="Self.tb_temp" Multiplicity="0..1" />
+          <End Role="tb_alimentos" Type="Self.tb_alimentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_temp">
+              <PropertyRef Name="id_temp" />
+            </Principal>
+            <Dependent Role="tb_alimentos">
+              <PropertyRef Name="id_temp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_defdefault_potencia1">
+          <End Role="potencia" Type="Self.potencia" Multiplicity="1" />
+          <End Role="tb_defdefault" Type="Self.tb_defdefault" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="potencia">
+              <PropertyRef Name="idpotencia" />
+            </Principal>
+            <Dependent Role="tb_defdefault">
+              <PropertyRef Name="idpotencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_temp_potencia1">
+          <End Role="potencia" Type="Self.potencia" Multiplicity="1" />
+          <End Role="tb_temp" Type="Self.tb_temp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="potencia">
+              <PropertyRef Name="idpotencia" />
+            </Principal>
+            <Dependent Role="tb_temp">
+              <PropertyRef Name="idpotencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_microondasModelStoreContainer">
+          <EntitySet Name="potencia" EntityType="Self.potencia" Schema="db_microondas" store:Type="Tables" />
+          <EntitySet Name="tb_alimentos" EntityType="Self.tb_alimentos" Schema="db_microondas" store:Type="Tables" />
+          <EntitySet Name="tb_defdefault" EntityType="Self.tb_defdefault" Schema="db_microondas" store:Type="Tables" />
+          <EntitySet Name="tb_temp" EntityType="Self.tb_temp" Schema="db_microondas" store:Type="Tables" />
+          <AssociationSet Name="fk_tb_alimentos_tb_defdefault" Association="Self.fk_tb_alimentos_tb_defdefault">
+            <End Role="tb_defdefault" EntitySet="tb_defdefault" />
+            <End Role="tb_alimentos" EntitySet="tb_alimentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_alimentos_tb_temp1" Association="Self.fk_tb_alimentos_tb_temp1">
+            <End Role="tb_temp" EntitySet="tb_temp" />
+            <End Role="tb_alimentos" EntitySet="tb_alimentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_defdefault_potencia1" Association="Self.fk_tb_defdefault_potencia1">
+            <End Role="potencia" EntitySet="potencia" />
+            <End Role="tb_defdefault" EntitySet="tb_defdefault" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_temp_potencia1" Association="Self.fk_tb_temp_potencia1">
+            <End Role="potencia" EntitySet="potencia" />
+            <End Role="tb_temp" EntitySet="tb_temp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_microondasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="potencia">
+          <Key>
+            <PropertyRef Name="idpotencia" />
+          </Key>
+          <Property Name="idpotencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao_potencia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="valor_potencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_defdefault" Relationship="Self.fk_tb_defdefault_potencia1" FromRole="potencia" ToRole="tb_defdefault" />
+          <NavigationProperty Name="tb_temp" Relationship="Self.fk_tb_temp_potencia1" FromRole="potencia" ToRole="tb_temp" />
+        </EntityType>
+        <EntityType Name="tb_alimentos">
+          <Key>
+            <PropertyRef Name="id_alimentos" />
+          </Key>
+          <Property Name="id_alimentos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao_alimento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tempo_alimento" Type="Int32" />
+          <Property Name="id_defdefault" Type="Int32" />
+          <Property Name="id_temp" Type="Int32" />
+          <NavigationProperty Name="tb_defdefault" Relationship="Self.fk_tb_alimentos_tb_defdefault" FromRole="tb_alimentos" ToRole="tb_defdefault" />
+          <NavigationProperty Name="tb_temp" Relationship="Self.fk_tb_alimentos_tb_temp1" FromRole="tb_alimentos" ToRole="tb_temp" />
+        </EntityType>
+        <EntityType Name="tb_defdefault">
+          <Key>
+            <PropertyRef Name="id_defdefault" />
+          </Key>
+          <Property Name="id_defdefault" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao_defdefault" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tempo_defaut" Type="Int32" Nullable="false" />
+          <Property Name="idpotencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="potencia" Relationship="Self.fk_tb_defdefault_potencia1" FromRole="tb_defdefault" ToRole="potencia" />
+          <NavigationProperty Name="tb_alimentos" Relationship="Self.fk_tb_alimentos_tb_defdefault" FromRole="tb_defdefault" ToRole="tb_alimentos" />
+        </EntityType>
+        <EntityType Name="tb_temp">
+          <Key>
+            <PropertyRef Name="id_temp" />
+          </Key>
+          <Property Name="id_temp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="temp" Type="Int32" Nullable="false" />
+          <Property Name="idpotencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="potencia" Relationship="Self.fk_tb_temp_potencia1" FromRole="tb_temp" ToRole="potencia" />
+          <NavigationProperty Name="tb_alimentos" Relationship="Self.fk_tb_alimentos_tb_temp1" FromRole="tb_temp" ToRole="tb_alimentos" />
+        </EntityType>
+        <Association Name="fk_tb_defdefault_potencia1">
+          <End Role="potencia" Type="Self.potencia" Multiplicity="1" />
+          <End Role="tb_defdefault" Type="Self.tb_defdefault" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="potencia">
+              <PropertyRef Name="idpotencia" />
+            </Principal>
+            <Dependent Role="tb_defdefault">
+              <PropertyRef Name="idpotencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_temp_potencia1">
+          <End Role="potencia" Type="Self.potencia" Multiplicity="1" />
+          <End Role="tb_temp" Type="Self.tb_temp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="potencia">
+              <PropertyRef Name="idpotencia" />
+            </Principal>
+            <Dependent Role="tb_temp">
+              <PropertyRef Name="idpotencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_alimentos_tb_defdefault">
+          <End Role="tb_defdefault" Type="Self.tb_defdefault" Multiplicity="0..1" />
+          <End Role="tb_alimentos" Type="Self.tb_alimentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_defdefault">
+              <PropertyRef Name="id_defdefault" />
+            </Principal>
+            <Dependent Role="tb_alimentos">
+              <PropertyRef Name="id_defdefault" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_alimentos_tb_temp1">
+          <End Role="tb_temp" Type="Self.tb_temp" Multiplicity="0..1" />
+          <End Role="tb_alimentos" Type="Self.tb_alimentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_temp">
+              <PropertyRef Name="id_temp" />
+            </Principal>
+            <Dependent Role="tb_alimentos">
+              <PropertyRef Name="id_temp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Banco" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="potencias" EntityType="Self.potencia" />
+          <EntitySet Name="tb_alimentos" EntityType="Self.tb_alimentos" />
+          <EntitySet Name="tb_defdefault" EntityType="Self.tb_defdefault" />
+          <EntitySet Name="tb_temp" EntityType="Self.tb_temp" />
+          <AssociationSet Name="fk_tb_defdefault_potencia1" Association="Self.fk_tb_defdefault_potencia1">
+            <End Role="potencia" EntitySet="potencias" />
+            <End Role="tb_defdefault" EntitySet="tb_defdefault" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_temp_potencia1" Association="Self.fk_tb_temp_potencia1">
+            <End Role="potencia" EntitySet="potencias" />
+            <End Role="tb_temp" EntitySet="tb_temp" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_alimentos_tb_defdefault" Association="Self.fk_tb_alimentos_tb_defdefault">
+            <End Role="tb_defdefault" EntitySet="tb_defdefault" />
+            <End Role="tb_alimentos" EntitySet="tb_alimentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_alimentos_tb_temp1" Association="Self.fk_tb_alimentos_tb_temp1">
+            <End Role="tb_temp" EntitySet="tb_temp" />
+            <End Role="tb_alimentos" EntitySet="tb_alimentos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_microondasModelStoreContainer" CdmEntityContainer="Banco">
+          <EntitySetMapping Name="potencias">
+            <EntityTypeMapping TypeName="db_microondasModel.potencia">
+              <MappingFragment StoreEntitySet="potencia">
+                <ScalarProperty Name="idpotencia" ColumnName="idpotencia" />
+                <ScalarProperty Name="descricao_potencia" ColumnName="descricao_potencia" />
+                <ScalarProperty Name="valor_potencia" ColumnName="valor_potencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_alimentos">
+            <EntityTypeMapping TypeName="db_microondasModel.tb_alimentos">
+              <MappingFragment StoreEntitySet="tb_alimentos">
+                <ScalarProperty Name="id_alimentos" ColumnName="id_alimentos" />
+                <ScalarProperty Name="descricao_alimento" ColumnName="descricao_alimento" />
+                <ScalarProperty Name="tempo_alimento" ColumnName="tempo_alimento" />
+                <ScalarProperty Name="id_defdefault" ColumnName="id_defdefault" />
+                <ScalarProperty Name="id_temp" ColumnName="id_temp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_defdefault">
+            <EntityTypeMapping TypeName="db_microondasModel.tb_defdefault">
+              <MappingFragment StoreEntitySet="tb_defdefault">
+                <ScalarProperty Name="id_defdefault" ColumnName="id_defdefault" />
+                <ScalarProperty Name="descricao_defdefault" ColumnName="descricao_defdefault" />
+                <ScalarProperty Name="tempo_defaut" ColumnName="tempo_defaut" />
+                <ScalarProperty Name="idpotencia" ColumnName="idpotencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_temp">
+            <EntityTypeMapping TypeName="db_microondasModel.tb_temp">
+              <MappingFragment StoreEntitySet="tb_temp">
+                <ScalarProperty Name="id_temp" ColumnName="id_temp" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="temp" ColumnName="temp" />
+                <ScalarProperty Name="idpotencia" ColumnName="idpotencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
