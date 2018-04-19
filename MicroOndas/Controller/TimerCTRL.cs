@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroOndas
+namespace Controller
 {
-    public class Class1
+    public class TimerCTRL
     {
+       /// int tempo = 0;
+       /// int minuto = 0;
+       /// int segundo = 0;
+
+
     }
 }

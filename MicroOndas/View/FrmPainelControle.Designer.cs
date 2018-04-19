@@ -30,7 +30,7 @@
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlpainel = new System.Windows.Forms.Panel();
-            this.lblDigital = new System.Windows.Forms.Label();
+            this.txtTempo = new System.Windows.Forms.MaskedTextBox();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -44,7 +44,7 @@
             this.btnOito = new System.Windows.Forms.Button();
             this.btnNove = new System.Windows.Forms.Button();
             this.btnSeis = new System.Windows.Forms.Button();
-            this.btnDesgelo = new System.Windows.Forms.Button();
+            this.btnCarne = new System.Windows.Forms.Button();
             this.btnFeijao = new System.Windows.Forms.Button();
             this.btnBolo = new System.Windows.Forms.Button();
             this.btnArroz = new System.Windows.Forms.Button();
@@ -69,22 +69,27 @@
             // pnlpainel
             // 
             this.pnlpainel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pnlpainel.Controls.Add(this.lblDigital);
+            this.pnlpainel.Controls.Add(this.txtTempo);
             this.pnlpainel.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlpainel.Location = new System.Drawing.Point(11, 7);
             this.pnlpainel.Name = "pnlpainel";
             this.pnlpainel.Size = new System.Drawing.Size(264, 100);
             this.pnlpainel.TabIndex = 17;
             // 
-            // lblDigital
+            // txtTempo
             // 
-            this.lblDigital.AutoSize = true;
-            this.lblDigital.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDigital.Location = new System.Drawing.Point(29, 11);
-            this.lblDigital.Name = "lblDigital";
-            this.lblDigital.Size = new System.Drawing.Size(199, 73);
-            this.lblDigital.TabIndex = 0;
-            this.lblDigital.Text = "00:00";
+            this.txtTempo.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtTempo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTempo.ForeColor = System.Drawing.SystemColors.Menu;
+            this.txtTempo.Location = new System.Drawing.Point(72, 2);
+            this.txtTempo.Mask = "00:00";
+            this.txtTempo.Name = "txtTempo";
+            this.txtTempo.PromptChar = ' ';
+            this.txtTempo.Size = new System.Drawing.Size(157, 91);
+            this.txtTempo.TabIndex = 15;
+            this.txtTempo.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.txtTempo.ValidatingType = typeof(System.DateTime);
             // 
             // btnIniciar
             // 
@@ -109,6 +114,7 @@
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // groupBox1
             // 
@@ -123,7 +129,7 @@
             this.groupBox1.Controls.Add(this.btnOito);
             this.groupBox1.Controls.Add(this.btnNove);
             this.groupBox1.Controls.Add(this.btnSeis);
-            this.groupBox1.Controls.Add(this.btnDesgelo);
+            this.groupBox1.Controls.Add(this.btnCarne);
             this.groupBox1.Controls.Add(this.btnFeijao);
             this.groupBox1.Controls.Add(this.btnBolo);
             this.groupBox1.Controls.Add(this.btnArroz);
@@ -145,26 +151,29 @@
             this.btnDois.TabIndex = 14;
             this.btnDois.Text = "2";
             this.btnDois.UseVisualStyleBackColor = true;
+            this.btnDois.Click += new System.EventHandler(this.btnDois_Click);
             // 
             // btnUm
             // 
             this.btnUm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUm.Location = new System.Drawing.Point(138, 260);
+            this.btnUm.Location = new System.Drawing.Point(138, 272);
             this.btnUm.Name = "btnUm";
             this.btnUm.Size = new System.Drawing.Size(51, 43);
             this.btnUm.TabIndex = 8;
             this.btnUm.Text = "1";
             this.btnUm.UseVisualStyleBackColor = true;
+            this.btnUm.Click += new System.EventHandler(this.btnUm_Click);
             // 
             // btnZero
             // 
             this.btnZero.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZero.Location = new System.Drawing.Point(72, 260);
+            this.btnZero.Location = new System.Drawing.Point(72, 272);
             this.btnZero.Name = "btnZero";
             this.btnZero.Size = new System.Drawing.Size(51, 43);
             this.btnZero.TabIndex = 13;
             this.btnZero.Text = "0";
             this.btnZero.UseVisualStyleBackColor = true;
+            this.btnZero.Click += new System.EventHandler(this.btnZero_Click);
             // 
             // btnSete
             // 
@@ -175,6 +184,7 @@
             this.btnSete.TabIndex = 12;
             this.btnSete.Text = "7";
             this.btnSete.UseVisualStyleBackColor = true;
+            this.btnSete.Click += new System.EventHandler(this.btnSete_Click);
             // 
             // btnTres
             // 
@@ -185,6 +195,7 @@
             this.btnTres.TabIndex = 11;
             this.btnTres.Text = "3";
             this.btnTres.UseVisualStyleBackColor = true;
+            this.btnTres.Click += new System.EventHandler(this.btnTres_Click);
             // 
             // btnCinco
             // 
@@ -195,6 +206,7 @@
             this.btnCinco.TabIndex = 10;
             this.btnCinco.Text = "5";
             this.btnCinco.UseVisualStyleBackColor = true;
+            this.btnCinco.Click += new System.EventHandler(this.btnCinco_Click);
             // 
             // btnQuatro
             // 
@@ -205,6 +217,7 @@
             this.btnQuatro.TabIndex = 9;
             this.btnQuatro.Text = "4";
             this.btnQuatro.UseVisualStyleBackColor = true;
+            this.btnQuatro.Click += new System.EventHandler(this.btnQuatro_Click);
             // 
             // btnOito
             // 
@@ -215,6 +228,7 @@
             this.btnOito.TabIndex = 7;
             this.btnOito.Text = "8";
             this.btnOito.UseVisualStyleBackColor = true;
+            this.btnOito.Click += new System.EventHandler(this.btnOito_Click);
             // 
             // btnNove
             // 
@@ -225,6 +239,7 @@
             this.btnNove.TabIndex = 6;
             this.btnNove.Text = "9";
             this.btnNove.UseVisualStyleBackColor = true;
+            this.btnNove.Click += new System.EventHandler(this.btnNove_Click);
             // 
             // btnSeis
             // 
@@ -235,18 +250,19 @@
             this.btnSeis.TabIndex = 5;
             this.btnSeis.Text = "6";
             this.btnSeis.UseVisualStyleBackColor = true;
+            this.btnSeis.Click += new System.EventHandler(this.btnSeis_Click);
             // 
-            // btnDesgelo
+            // btnCarne
             // 
-            this.btnDesgelo.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnDesgelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDesgelo.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDesgelo.Location = new System.Drawing.Point(138, 86);
-            this.btnDesgelo.Name = "btnDesgelo";
-            this.btnDesgelo.Size = new System.Drawing.Size(80, 55);
-            this.btnDesgelo.TabIndex = 4;
-            this.btnDesgelo.Text = "Desgelo";
-            this.btnDesgelo.UseVisualStyleBackColor = false;
+            this.btnCarne.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnCarne.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCarne.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCarne.Location = new System.Drawing.Point(138, 86);
+            this.btnCarne.Name = "btnCarne";
+            this.btnCarne.Size = new System.Drawing.Size(80, 55);
+            this.btnCarne.TabIndex = 4;
+            this.btnCarne.Text = "Carne";
+            this.btnCarne.UseVisualStyleBackColor = false;
             // 
             // btnFeijao
             // 
@@ -325,7 +341,6 @@
 
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnlpainel;
-        private System.Windows.Forms.Label lblDigital;
         private System.Windows.Forms.Button btnIniciar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -339,11 +354,12 @@
         private System.Windows.Forms.Button btnOito;
         private System.Windows.Forms.Button btnNove;
         private System.Windows.Forms.Button btnSeis;
-        private System.Windows.Forms.Button btnDesgelo;
+        private System.Windows.Forms.Button btnCarne;
         private System.Windows.Forms.Button btnFeijao;
         private System.Windows.Forms.Button btnBolo;
         private System.Windows.Forms.Button btnArroz;
         private System.Windows.Forms.Button btnPipoca;
         private System.Windows.Forms.Panel pnlTela;
+        private System.Windows.Forms.MaskedTextBox txtTempo;
     }
 }
