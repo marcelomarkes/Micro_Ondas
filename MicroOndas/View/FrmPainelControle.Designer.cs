@@ -50,9 +50,12 @@
             this.btnArroz = new System.Windows.Forms.Button();
             this.btnPipoca = new System.Windows.Forms.Button();
             this.pnlTela = new System.Windows.Forms.Panel();
+            this.lbAquecido = new System.Windows.Forms.Label();
+            this.lbTimer = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.pnlpainel.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.pnlTela.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -69,7 +72,7 @@
             // pnlpainel
             // 
             this.pnlpainel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pnlpainel.Controls.Add(this.txtTempo);
+            this.pnlpainel.Controls.Add(this.lbTimer);
             this.pnlpainel.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlpainel.Location = new System.Drawing.Point(11, 7);
             this.pnlpainel.Name = "pnlpainel";
@@ -78,18 +81,19 @@
             // 
             // txtTempo
             // 
-            this.txtTempo.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtTempo.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtTempo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTempo.ForeColor = System.Drawing.SystemColors.Menu;
-            this.txtTempo.Location = new System.Drawing.Point(72, 2);
+            this.txtTempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTempo.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtTempo.Location = new System.Drawing.Point(206, 286);
             this.txtTempo.Mask = "00:00";
             this.txtTempo.Name = "txtTempo";
             this.txtTempo.PromptChar = ' ';
-            this.txtTempo.Size = new System.Drawing.Size(157, 91);
+            this.txtTempo.Size = new System.Drawing.Size(34, 15);
             this.txtTempo.TabIndex = 15;
             this.txtTempo.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtTempo.ValidatingType = typeof(System.DateTime);
+            this.txtTempo.Visible = false;
             // 
             // btnIniciar
             // 
@@ -102,6 +106,7 @@
             this.btnIniciar.TabIndex = 16;
             this.btnIniciar.Text = "Iniciar";
             this.btnIniciar.UseVisualStyleBackColor = false;
+            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
             // btnCancelar
             // 
@@ -119,6 +124,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox1.Controls.Add(this.txtTempo);
             this.groupBox1.Controls.Add(this.btnDois);
             this.groupBox1.Controls.Add(this.btnUm);
             this.groupBox1.Controls.Add(this.btnZero);
@@ -315,10 +321,31 @@
             // pnlTela
             // 
             this.pnlTela.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.pnlTela.Controls.Add(this.lbAquecido);
             this.pnlTela.Location = new System.Drawing.Point(2, 3);
             this.pnlTela.Name = "pnlTela";
             this.pnlTela.Size = new System.Drawing.Size(640, 516);
             this.pnlTela.TabIndex = 7;
+            // 
+            // lbAquecido
+            // 
+            this.lbAquecido.AutoSize = true;
+            this.lbAquecido.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAquecido.Location = new System.Drawing.Point(139, 223);
+            this.lbAquecido.Name = "lbAquecido";
+            this.lbAquecido.Size = new System.Drawing.Size(309, 73);
+            this.lbAquecido.TabIndex = 0;
+            this.lbAquecido.Text = "Aquecido";
+            // 
+            // lbTimer
+            // 
+            this.lbTimer.AutoSize = true;
+            this.lbTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTimer.Location = new System.Drawing.Point(39, 14);
+            this.lbTimer.Name = "lbTimer";
+            this.lbTimer.Size = new System.Drawing.Size(199, 73);
+            this.lbTimer.TabIndex = 0;
+            this.lbTimer.Text = "00:00";
             // 
             // FrmPainelControle
             // 
@@ -329,10 +356,14 @@
             this.Controls.Add(this.pnlTela);
             this.Name = "FrmPainelControle";
             this.Text = "Micro-Ondas Digital";
+            this.Load += new System.EventHandler(this.FrmPainelControle_Load);
             this.panel2.ResumeLayout(false);
             this.pnlpainel.ResumeLayout(false);
             this.pnlpainel.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.pnlTela.ResumeLayout(false);
+            this.pnlTela.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -361,5 +392,7 @@
         private System.Windows.Forms.Button btnPipoca;
         private System.Windows.Forms.Panel pnlTela;
         private System.Windows.Forms.MaskedTextBox txtTempo;
+        private System.Windows.Forms.Label lbAquecido;
+        private System.Windows.Forms.Label lbTimer;
     }
 }

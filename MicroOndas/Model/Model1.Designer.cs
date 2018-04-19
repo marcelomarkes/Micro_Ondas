@@ -20,9 +20,7 @@ using System.Xml.Serialization;
 #region Metadados de Relação EDM
 
 [assembly: EdmRelationshipAttribute("db_microondasModel", "fk_tb_defdefault_potencia1", "potencia", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Model.potencia), "tb_defdefault", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Model.tb_defdefault), true)]
-[assembly: EdmRelationshipAttribute("db_microondasModel", "fk_tb_temp_potencia1", "potencia", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Model.potencia), "tb_temp", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Model.tb_temp), true)]
 [assembly: EdmRelationshipAttribute("db_microondasModel", "fk_tb_alimentos_tb_defdefault", "tb_defdefault", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Model.tb_defdefault), "tb_alimentos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Model.tb_alimentos), true)]
-[assembly: EdmRelationshipAttribute("db_microondasModel", "fk_tb_alimentos_tb_temp1", "tb_temp", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Model.tb_temp), "tb_alimentos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Model.tb_alimentos), true)]
 
 #endregion
 
@@ -121,22 +119,6 @@ namespace Model
             }
         }
         private ObjectSet<tb_defdefault> _tb_defdefault;
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        public ObjectSet<tb_temp> tb_temp
-        {
-            get
-            {
-                if ((_tb_temp == null))
-                {
-                    _tb_temp = base.CreateObjectSet<tb_temp>("tb_temp");
-                }
-                return _tb_temp;
-            }
-        }
-        private ObjectSet<tb_temp> _tb_temp;
 
         #endregion
 
@@ -165,14 +147,6 @@ namespace Model
         {
             base.AddObject("tb_defdefault", tb_defdefault);
         }
-    
-        /// <summary>
-        /// Método preterido para adicionar um novo objeto ao EntitySet tb_temp. Em vez disso, experimente usar o método .Add da propriedade ObjectSet&lt;T&gt; associada.
-        /// </summary>
-        public void AddTotb_temp(tb_temp tb_temp)
-        {
-            base.AddObject("tb_temp", tb_temp);
-        }
 
         #endregion
 
@@ -196,13 +170,11 @@ namespace Model
         /// Crie um novo objeto potencia.
         /// </summary>
         /// <param name="idpotencia">Valor inicial da propriedade idpotencia.</param>
-        /// <param name="descricao_potencia">Valor inicial da propriedade descricao_potencia.</param>
         /// <param name="valor_potencia">Valor inicial da propriedade valor_potencia.</param>
-        public static potencia Createpotencia(global::System.Int32 idpotencia, global::System.String descricao_potencia, global::System.Int32 valor_potencia)
+        public static potencia Createpotencia(global::System.Int32 idpotencia, global::System.Int32 valor_potencia)
         {
             potencia potencia = new potencia();
             potencia.idpotencia = idpotencia;
-            potencia.descricao_potencia = descricao_potencia;
             potencia.valor_potencia = valor_potencia;
             return potencia;
         }
@@ -237,30 +209,6 @@ namespace Model
         private global::System.Int32 _idpotencia;
         partial void OnidpotenciaChanging(global::System.Int32 value);
         partial void OnidpotenciaChanged();
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String descricao_potencia
-        {
-            get
-            {
-                return _descricao_potencia;
-            }
-            set
-            {
-                Ondescricao_potenciaChanging(value);
-                ReportPropertyChanging("descricao_potencia");
-                _descricao_potencia = StructuralObject.SetValidValue(value, false, "descricao_potencia");
-                ReportPropertyChanged("descricao_potencia");
-                Ondescricao_potenciaChanged();
-            }
-        }
-        private global::System.String _descricao_potencia;
-        partial void Ondescricao_potenciaChanging(global::System.String value);
-        partial void Ondescricao_potenciaChanged();
     
         /// <summary>
         /// Nenhuma Documentação de Metadados disponível.
@@ -308,28 +256,6 @@ namespace Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tb_defdefault>("db_microondasModel.fk_tb_defdefault_potencia1", "tb_defdefault", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("db_microondasModel", "fk_tb_temp_potencia1", "tb_temp")]
-        public EntityCollection<tb_temp> tb_temp
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tb_temp>("db_microondasModel.fk_tb_temp_potencia1", "tb_temp");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tb_temp>("db_microondasModel.fk_tb_temp_potencia1", "tb_temp", value);
                 }
             }
         }
@@ -421,30 +347,6 @@ namespace Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tempo_alimento
-        {
-            get
-            {
-                return _tempo_alimento;
-            }
-            set
-            {
-                Ontempo_alimentoChanging(value);
-                ReportPropertyChanging("tempo_alimento");
-                _tempo_alimento = StructuralObject.SetValidValue(value, "tempo_alimento");
-                ReportPropertyChanged("tempo_alimento");
-                Ontempo_alimentoChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _tempo_alimento;
-        partial void Ontempo_alimentoChanging(Nullable<global::System.Int32> value);
-        partial void Ontempo_alimentoChanged();
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> id_defdefault
         {
             get
@@ -463,30 +365,6 @@ namespace Model
         private Nullable<global::System.Int32> _id_defdefault;
         partial void Onid_defdefaultChanging(Nullable<global::System.Int32> value);
         partial void Onid_defdefaultChanged();
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> id_temp
-        {
-            get
-            {
-                return _id_temp;
-            }
-            set
-            {
-                Onid_tempChanging(value);
-                ReportPropertyChanging("id_temp");
-                _id_temp = StructuralObject.SetValidValue(value, "id_temp");
-                ReportPropertyChanged("id_temp");
-                Onid_tempChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _id_temp;
-        partial void Onid_tempChanging(Nullable<global::System.Int32> value);
-        partial void Onid_tempChanged();
 
         #endregion
 
@@ -529,44 +407,6 @@ namespace Model
                 }
             }
         }
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("db_microondasModel", "fk_tb_alimentos_tb_temp1", "tb_temp")]
-        public tb_temp tb_temp
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_temp>("db_microondasModel.fk_tb_alimentos_tb_temp1", "tb_temp").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_temp>("db_microondasModel.fk_tb_alimentos_tb_temp1", "tb_temp").Value = value;
-            }
-        }
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<tb_temp> tb_tempReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tb_temp>("db_microondasModel.fk_tb_alimentos_tb_temp1", "tb_temp");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tb_temp>("db_microondasModel.fk_tb_alimentos_tb_temp1", "tb_temp", value);
-                }
-            }
-        }
 
         #endregion
 
@@ -586,14 +426,12 @@ namespace Model
         /// Crie um novo objeto tb_defdefault.
         /// </summary>
         /// <param name="id_defdefault">Valor inicial da propriedade id_defdefault.</param>
-        /// <param name="descricao_defdefault">Valor inicial da propriedade descricao_defdefault.</param>
         /// <param name="tempo_defaut">Valor inicial da propriedade tempo_defaut.</param>
         /// <param name="idpotencia">Valor inicial da propriedade idpotencia.</param>
-        public static tb_defdefault Createtb_defdefault(global::System.Int32 id_defdefault, global::System.String descricao_defdefault, global::System.Int32 tempo_defaut, global::System.Int32 idpotencia)
+        public static tb_defdefault Createtb_defdefault(global::System.Int32 id_defdefault, global::System.Int32 tempo_defaut, global::System.Int32 idpotencia)
         {
             tb_defdefault tb_defdefault = new tb_defdefault();
             tb_defdefault.id_defdefault = id_defdefault;
-            tb_defdefault.descricao_defdefault = descricao_defdefault;
             tb_defdefault.tempo_defaut = tempo_defaut;
             tb_defdefault.idpotencia = idpotencia;
             return tb_defdefault;
@@ -629,30 +467,6 @@ namespace Model
         private global::System.Int32 _id_defdefault;
         partial void Onid_defdefaultChanging(global::System.Int32 value);
         partial void Onid_defdefaultChanged();
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String descricao_defdefault
-        {
-            get
-            {
-                return _descricao_defdefault;
-            }
-            set
-            {
-                Ondescricao_defdefaultChanging(value);
-                ReportPropertyChanging("descricao_defdefault");
-                _descricao_defdefault = StructuralObject.SetValidValue(value, false, "descricao_defdefault");
-                ReportPropertyChanged("descricao_defdefault");
-                Ondescricao_defdefaultChanged();
-            }
-        }
-        private global::System.String _descricao_defdefault;
-        partial void Ondescricao_defdefaultChanging(global::System.String value);
-        partial void Ondescricao_defdefaultChanged();
     
         /// <summary>
         /// Nenhuma Documentação de Metadados disponível.
@@ -762,204 +576,6 @@ namespace Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tb_alimentos>("db_microondasModel.fk_tb_alimentos_tb_defdefault", "tb_alimentos", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// Nenhuma Documentação de Metadados disponível.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="db_microondasModel", Name="tb_temp")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class tb_temp : EntityObject
-    {
-        #region Método de Fábrica
-    
-        /// <summary>
-        /// Crie um novo objeto tb_temp.
-        /// </summary>
-        /// <param name="id_temp">Valor inicial da propriedade id_temp.</param>
-        /// <param name="descricao">Valor inicial da propriedade descricao.</param>
-        /// <param name="temp">Valor inicial da propriedade temp.</param>
-        /// <param name="idpotencia">Valor inicial da propriedade idpotencia.</param>
-        public static tb_temp Createtb_temp(global::System.Int32 id_temp, global::System.String descricao, global::System.Int32 temp, global::System.Int32 idpotencia)
-        {
-            tb_temp tb_temp = new tb_temp();
-            tb_temp.id_temp = id_temp;
-            tb_temp.descricao = descricao;
-            tb_temp.temp = temp;
-            tb_temp.idpotencia = idpotencia;
-            return tb_temp;
-        }
-
-        #endregion
-
-        #region Propriedades Simples
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 id_temp
-        {
-            get
-            {
-                return _id_temp;
-            }
-            set
-            {
-                if (_id_temp != value)
-                {
-                    Onid_tempChanging(value);
-                    ReportPropertyChanging("id_temp");
-                    _id_temp = StructuralObject.SetValidValue(value, "id_temp");
-                    ReportPropertyChanged("id_temp");
-                    Onid_tempChanged();
-                }
-            }
-        }
-        private global::System.Int32 _id_temp;
-        partial void Onid_tempChanging(global::System.Int32 value);
-        partial void Onid_tempChanged();
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String descricao
-        {
-            get
-            {
-                return _descricao;
-            }
-            set
-            {
-                OndescricaoChanging(value);
-                ReportPropertyChanging("descricao");
-                _descricao = StructuralObject.SetValidValue(value, false, "descricao");
-                ReportPropertyChanged("descricao");
-                OndescricaoChanged();
-            }
-        }
-        private global::System.String _descricao;
-        partial void OndescricaoChanging(global::System.String value);
-        partial void OndescricaoChanged();
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 temp
-        {
-            get
-            {
-                return _temp;
-            }
-            set
-            {
-                OntempChanging(value);
-                ReportPropertyChanging("temp");
-                _temp = StructuralObject.SetValidValue(value, "temp");
-                ReportPropertyChanged("temp");
-                OntempChanged();
-            }
-        }
-        private global::System.Int32 _temp;
-        partial void OntempChanging(global::System.Int32 value);
-        partial void OntempChanged();
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 idpotencia
-        {
-            get
-            {
-                return _idpotencia;
-            }
-            set
-            {
-                OnidpotenciaChanging(value);
-                ReportPropertyChanging("idpotencia");
-                _idpotencia = StructuralObject.SetValidValue(value, "idpotencia");
-                ReportPropertyChanged("idpotencia");
-                OnidpotenciaChanged();
-            }
-        }
-        private global::System.Int32 _idpotencia;
-        partial void OnidpotenciaChanging(global::System.Int32 value);
-        partial void OnidpotenciaChanged();
-
-        #endregion
-
-        #region Propriedades de Navegação
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("db_microondasModel", "fk_tb_temp_potencia1", "potencia")]
-        public potencia potencia
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<potencia>("db_microondasModel.fk_tb_temp_potencia1", "potencia").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<potencia>("db_microondasModel.fk_tb_temp_potencia1", "potencia").Value = value;
-            }
-        }
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<potencia> potenciaReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<potencia>("db_microondasModel.fk_tb_temp_potencia1", "potencia");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<potencia>("db_microondasModel.fk_tb_temp_potencia1", "potencia", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// Nenhuma Documentação de Metadados disponível.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("db_microondasModel", "fk_tb_alimentos_tb_temp1", "tb_alimentos")]
-        public EntityCollection<tb_alimentos> tb_alimentos
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tb_alimentos>("db_microondasModel.fk_tb_alimentos_tb_temp1", "tb_alimentos");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tb_alimentos>("db_microondasModel.fk_tb_alimentos_tb_temp1", "tb_alimentos", value);
                 }
             }
         }

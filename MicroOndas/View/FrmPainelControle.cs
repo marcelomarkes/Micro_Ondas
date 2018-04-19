@@ -77,5 +77,22 @@ namespace View
         {
             Limpar();
         }
+
+        private void FrmPainelControle_Load(object sender, EventArgs e)
+        {
+            lbAquecido.Visible = false;
+            
+        }
+
+        private void btnIniciar_Click(object sender, EventArgs e)
+        {
+            if(lbTimer.Text.Trim() == "")
+            {
+                TimerCTRL tm = new TimerCTRL();
+                Rece
+            }
+
+            return tm;
+        }
     }
 }
